@@ -21,9 +21,16 @@ class DatabaseSeeder extends Seeder
         // 2. Crear 15 autores 
         $authors = Author::factory(15)->create(); 
   
+        /* comentado temporalmente para el repaso 1
         // 3. Ejecutar CategorySeeder (10 categorías) 
         $this->call(CategorySeeder::class); 
         $categoryIds = \App\Models\Category::pluck('id'); 
+        */
+
+        // 3. Ejecutar CategorySeeder (Crea Trabajo, Estudio, Personal, Ideas)
+        $this->call(CategorySeeder::class);
+        // Obtenemos los IDs de las categorías recién creadas
+        $categoryIds = \App\Models\Category::pluck('id');
   
         // 4. Crear 50 libros con categoría random 
         $books = Book::factory(50)->create([ 
@@ -82,5 +89,11 @@ class DatabaseSeeder extends Seeder
                 ]);
             }
         });
+
+        // para el repaso 1
+        $this->call([
+            NoteSeeder::class,
+        ]);
+
     } 
 }

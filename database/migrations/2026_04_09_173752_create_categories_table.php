@@ -6,12 +6,11 @@ return new class extends Migration
 {
     public function up(): void
     {
-        Schema::create('categories', function (Blueprint $table) {
+        //cambio temporal el que es verdadero esta en el archivo perseptron.txt del escritorio
+       Schema::create('categories', function (Blueprint $table) {
             $table->id();
-            $table->string('name', 100)->unique();
-            $table->string('slug', 120)->unique();
-            $table->text('description')->nullable();
-            $table->string('color', 7)->default('#6B7280');
+            $table->string('name', 80)->unique(); 
+            $table->string('description', 255)->nullable();
             $table->timestamps();
         });
     }

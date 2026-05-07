@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Str;
 
 class Category extends Model
@@ -12,14 +13,16 @@ class Category extends Model
 
     protected $fillable = [
         'name',
-        'slug',
+        //'slug',
         'description',
-        'color',
+        //'color',
     ]; 
 
     /**
      * Boot: genera el slug automáticamente al crear la categoría.
      */
+    
+    /*comentado temporalmente
     protected static function boot(): void
     {
         parent::boot();
@@ -30,6 +33,9 @@ class Category extends Model
             }
         });
     } 
+    */
+
+
 
     /** 
      * Relación: una categoría tiene muchos libros. 
@@ -37,6 +43,13 @@ class Category extends Model
     public function books(): \Illuminate\Database\Eloquent\Relations\HasMany 
     { 
         return $this->hasMany(Book::class); 
+    }
+
+    
+    /** Relación para el Repaso 1 */
+    public function notes(): HasMany 
+    {
+        return $this->hasMany(Note::class);
     }
 
 }
